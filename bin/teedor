@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'optparse'
+require "#{File.dirname(__FILE__)}/../lib/teedor"
+
+options = {:config_file => "#{ENV['HOME']}/.teedor.yml"}
+
+OptionParser.new do |opts|
+  opts.summary_width = 25
+
+  opts.banner = "Teedor: RSS to growl alerter"
+
+  opts.on('--help', "Print this message") do
+    puts "#{opts}\n"
+    exit
+  end
+
+  opts.on('--config-file=FILE', "Config file (Default: #{options[:config_file]})") do |file|
+    options[:config_file] = file
+  end
+
+end.parse!
+
